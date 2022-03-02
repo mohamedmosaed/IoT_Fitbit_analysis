@@ -5,8 +5,8 @@ A Fitbit is an activity tracker worn on the wrist just like a watch, that tracks
 
 The goal of this project is to analyze the data come form Fitbit device and show the user his activitu rate.
 
-# **[Dashboard](http://127.0.0.1:8050/)**
-*Click the link above to view the graphes.
+# **Dashboard Image**
+![Dashboard](https://github.com/mohamedmosaed/IoT_Fitbit_analysis/blob/main/image/Screenshot%202022-03-02%20150946.png)
 
 # Methods
 Data was collected via kaggle from this **[link](https://www.kaggle.com/mjazzy/fitbit-fitness-bellabeat-high-tech-company)**.
@@ -34,6 +34,8 @@ linearRegressionModel = make_pipeline(
 # fit the model
 linearRegressionModel.fit(X_train,y_train)
 ```
+
+
 Initiate Ridge Estimator
 ```sh
 # Instantiate Ridge 
@@ -46,6 +48,30 @@ model_ridge = make_pipeline(
 model_ridge.fit(X_train, y_train)
 ```
 
+Initiate Random Forest Regressor Estimator
+```sh
+# Instantiate RandomForestRegressor 
+model_forest = make_pipeline(
+    MinMaxScaler(),
+    SimpleImputer(strategy='mean'),
+    RandomForestRegressor(random_state=42, n_jobs=-1))
+
+# fit the model
+model_forest.fit(X_train, y_train)
+```
+Initiate Random Forest Classifier
+```sh
+# Instantiate RandomForestRegressor 
+model_forest_class =make_pipeline(
+    OneHotEncoder(),
+    MinMaxScaler(),
+    RandomForestClassifier(n_jobs=-1,
+                           random_state=42)
+)
+
+# fit the model
+model_forest_class.fit(X_train, y_train)
+```
 # License
 ***MIT License***
 
